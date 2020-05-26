@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from django.shortcuts import  redirect, reverse
-import dj_database_url
+import django_heroku
+# from django.shortcuts import  redirect, reverse
+# import dj_database_url
 
 
 DEBUG = False
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -154,8 +156,8 @@ BOOTSTRAP4 = {
 
 LOGIN_REDIRECT_URL = '/icard/list/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# django_heroku.settings(locals())
-if os.environ.get('DJANGO_DEVELOPMENT') != 'True':
-    import dj_database_url
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+django_heroku.settings(locals())
+# if os.environ.get('DJANGO_DEVELOPMENT') != 'True':
+#     import dj_database_url
+#     db_from_env = dj_database_url.config(conn_max_age=500)
+#     DATABASES['default'].update(db_from_env)

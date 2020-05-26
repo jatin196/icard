@@ -7,6 +7,4 @@ urlpatterns = [
     path('list/', ClientList.as_view(), name='list'),
 
     path('Info-saved/', thankyou, name='thanks'),
-
-
 ]
